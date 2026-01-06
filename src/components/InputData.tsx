@@ -10,7 +10,8 @@ export const inputVariants = cva(`p-[12px] rounded-md gap-8 flex items-center bo
   focus:ring-[#B8952E]`,{
     variants:{
         size:{
-            md:"h-[48px]"
+            md:"h-[48px] w-full",
+            sm: "h-[40px] w-[150px]"
         },
         isDisabled:{
             true:"pointer-events-none"
