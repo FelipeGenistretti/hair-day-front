@@ -3,7 +3,7 @@ import type { Component, ComponentProps, ReactNode } from "react"
 import type React from "react"
 import { textVariants } from "./Text"
 
-export const inputVariants = cva(`p-[12px] rounded-md gap-8 flex items-center border border-gray-500   transition-colors
+export const inputVariants = cva(`p-[12px] rounded-md mr-auto flex items-center border border-gray-500   transition-colors
   focus:outline-none
   focus:border-[#B8952E]
   focus:ring-1

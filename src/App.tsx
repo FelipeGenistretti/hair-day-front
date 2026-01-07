@@ -1,7 +1,10 @@
 import { Button } from "./components/Button"
+import { Card } from "./components/Card"
 import { InputData } from "./components/InputData"
 import { InputText } from "./components/InputText"
 import { MiniCards } from "./components/MiniCards"
+import { Period } from "./models/period.enum"
+
 
 function App() {
 
@@ -14,6 +17,9 @@ function App() {
       <MiniCards disabled >10:00</MiniCards>
       <InputText/>
       <Button>agendar</Button>
+      <Card period={Period.MANHA} ></Card>
+      <Card period={Period.NOITE} ></Card>
+      <Card period={Period.TARDE} ></Card>
     </div>
   )
 }
