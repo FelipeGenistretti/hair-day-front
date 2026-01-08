@@ -1,7 +1,10 @@
 import { cva, cx, type VariantProps } from "class-variance-authority"
-import type { ReactNode } from "react"
+import type {
+  ButtonHTMLAttributes,
+  ReactNode,
+  ElementType,
+} from "react"
 import { Text } from "./Text"
-
 
 export const miniCardsVariants = cva(
   `
@@ -26,35 +29,39 @@ export const miniCardsVariants = cva(
         md: "h-[40px] px-4",
       },
       disabled: {
-        true: "pointer-events-none border border-gray-500 bg-gray-600",
+        true: "pointer-events-none opacity-50",
+        false: "",
       },
     },
     defaultVariants: {
       variant: "default",
       state: "default",
       size: "md",
+      disabled: false,
     },
   }
 )
 
-
-export type CardAs = "div" | "article" | "section" | "button"
+export type CardAs = ElementType
 
 export interface MiniCardsProps
-  extends VariantProps<typeof miniCardsVariants> {
-  children?: ReactNode
+  extends VariantProps<typeof miniCardsVariants>,
+    Omit<
+      ButtonHTMLAttributes<HTMLButtonElement>,
+      "size" | "disabled"
+    > {
   as?: CardAs
-  className?: string
+  children: ReactNode
   disabled?: boolean
+  className?: string
 }
-
 
 export function MiniCards({
   as: Component = "button",
   variant,
   state,
   size,
-  disabled,
+  disabled = false,
   className,
   children,
   ...props
@@ -64,19 +71,25 @@ export function MiniCards({
       type={Component === "button" ? "button" : undefined}
       disabled={Component === "button" ? disabled : undefined}
       className={cx(
-        miniCardsVariants({ variant, state, size, disabled }),
+        miniCardsVariants({
+          variant,
+          state,
+          size,
+          disabled,
+        }),
         className
       )}
       {...props}
     >
-        {!disabled ?
-      <Text  className="group-[.selected]:text-[#B8952E]">
-        {children}
-      </Text>:
-      <Text className="text-gray-500">
+      <Text
+        className={
+          disabled
+            ? "text-gray-500"
+            : "group-[.selected]:text-[#B8952E]"
+        }
+      >
         {children}
       </Text>
-        }
     </Component>
   )
 }

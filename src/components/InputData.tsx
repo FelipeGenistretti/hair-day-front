@@ -28,14 +28,38 @@ export const inputVariants = cva(`p-[12px] rounded-md mr-auto flex items-center 
 export interface InputDataProps extends VariantProps<typeof inputVariants>, Omit<ComponentProps<"input">, "size"|"disabled"> {
     className?:string
     isDisabled?:boolean
+    label?:string
 }
 
-export function InputData({isDisabled, size,className, ...props }:InputDataProps){
-    return (
-        <input type="date" 
-            className={cx(inputVariants({size,isDisabled, className}),textVariants())}
-            disabled={isDisabled}
-            {...props}
-        />
-    )
+export function InputData({
+  isDisabled,
+  size,
+  className,
+  label,
+  id,
+  ...props
+}: InputDataProps) {
+  return (
+    <div className="flex flex-col gap-1 w-full">
+      {label && (
+        <label
+          htmlFor={id}
+          className={textVariants({ variant:"body-md" })}
+        >
+          {label}
+        </label>
+      )}
+
+      <input
+        id={id}
+        type="date"
+        disabled={isDisabled}
+        className={cx(
+          inputVariants({ size, isDisabled }),
+          className
+        )}
+        {...props}
+      />
+    </div>
+  )
 }
