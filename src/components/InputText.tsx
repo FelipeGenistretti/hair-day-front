@@ -43,7 +43,7 @@ export function InputText({
   ...props
 }: InputTextProps) {
   return (
-    <div className="flex flex-col gap-1 w-full">
+    <div className="flex flex-col gap-1 w-full mt-[40px]">
       {label && (
         <label
           htmlFor={id}
@@ -53,7 +53,7 @@ export function InputText({
         </label>
       )}
 
-      <div className="relative w-full">
+      <div className="relative w-full ">
         <input
           id={id}
           type="text"

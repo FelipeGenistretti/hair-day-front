@@ -38,37 +38,39 @@ export function AgendeAtendimento() {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-gray-700 p-[80px] rounded-md h-full">
       <form>
         <div>
-          <Text variant="body-title">Agende um atendimento</Text>
+          <Text variant="body-title" className="text-2xl">Agende um atendimento</Text>
           <Text>
             Selecione data, horário e informe o nome do cliente
             para criar o agendamento
           </Text>
         </div>
 
-        <div>
+        <div className="mt-[40px]">
           <InputData
+          className="mb-[40px]"
             label="Data"
             value={draft.date ?? ""}
             onChange={handleSetDate}
           />
 
+          <Text>Horarios</Text>
           <HorariosCards
             horario="manha"
             isSlotOccupied={(hour) =>
-                isSlotOccupied(Period.MANHA, hour)
+              isSlotOccupied(Period.MANHA, hour)
             }
             onSelect={(hour) =>
               selectPeriodHour(hour, Period.MANHA)
             }
-          />
+            />
 
           <HorariosCards
             horario="tarde"
             isSlotOccupied={(hour) =>
-            isSlotOccupied(Period.TARDE, hour)
+              isSlotOccupied(Period.TARDE, hour)
             }
             onSelect={(hour) =>
               selectPeriodHour(hour, Period.TARDE)
@@ -96,6 +98,7 @@ export function AgendeAtendimento() {
 
         <div>
           <Button
+          className="mt-[40px] w-full"
             isDisabled={!canSubmit()}
             onClick={handleSubmit}
           >

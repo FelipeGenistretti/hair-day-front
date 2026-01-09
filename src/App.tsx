@@ -6,6 +6,7 @@ import { MiniCards } from "./components/MiniCards"
 import { Agenda } from "./core-components/Agenda"
 import { AgendeAtendimento } from "./core-components/AgendeAtendimento"
 import { Period } from "./models/period.enum"
+import { Home } from "./pages/Home"
 
 
 function App() {
@@ -13,10 +14,7 @@ function App() {
   return (
     <div>
 
-      <Agenda/>
-
-
-      <AgendeAtendimento/>
+      <Home/>
       {/* <InputData/>
       <InputData size="sm"/>
       <MiniCards state="selected">10:00</MiniCards>

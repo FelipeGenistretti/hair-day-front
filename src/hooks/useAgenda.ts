@@ -17,6 +17,21 @@ export function useAgenda() {
   )
 
   const [draft, setDraft] = useState<AgendamentoDraftType>({})
+  const [selectedDate, setSelectedDate] = useState<string>("")
+
+   function setFilterDate(date: string) {
+    setSelectedDate(date)
+  }
+
+  const filteredAgendas = selectedDate
+    ? agenda.filter(a => a.date === selectedDate)
+    : agenda
+
+  function deleteAgenda(id:string){
+    setAgenda(
+      agenda.filter((a)=> a.id != id)
+    )
+  }
 
   function setDate(date: string) {
     setDraft((prev) => ({
@@ -79,20 +94,25 @@ export function useAgenda() {
       },
     }
 
+    console.log("data filtro", filteredAgendas);
+    
     setAgenda((prev) => [...prev, novo])
-    
-    
+
     setDraft({})
   }
 
   return {
     agenda,
     draft,
+    filteredAgendas,
     setDate,
     selectPeriodHour,
     selectName,
     canSubmit,
     submit,
-    isSlotOccupied
+    deleteAgenda,
+    isSlotOccupied,
+    setFilterDate,
+
   }
 }
